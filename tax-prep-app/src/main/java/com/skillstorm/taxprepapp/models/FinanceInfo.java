@@ -1,5 +1,7 @@
 package com.skillstorm.taxprepapp.models;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -54,12 +57,33 @@ public class FinanceInfo {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
+    @OneToMany(targetEntity = Dependent.class, mappedBy = "financeInfo")
+    private Set<Dependent> dependents;
+
     public FinanceInfo() {
+    }
+
+    public FinanceInfo(String filingStatus, String spouseFirstName, String spouseMiddleInitial, String spouseLastName,
+            int spouseSsn, int w2Income, int otherIncome, int taxWithheldW2, int taxWithheld1099, int taxWithheldOther,
+            int prevTaxesPaid, Profile profile, Set<Dependent> dependents) {
+        this.filingStatus = filingStatus;
+        this.spouseFirstName = spouseFirstName;
+        this.spouseMiddleInitial = spouseMiddleInitial;
+        this.spouseLastName = spouseLastName;
+        this.spouseSsn = spouseSsn;
+        this.w2Income = w2Income;
+        this.otherIncome = otherIncome;
+        this.taxWithheldW2 = taxWithheldW2;
+        this.taxWithheld1099 = taxWithheld1099;
+        this.taxWithheldOther = taxWithheldOther;
+        this.prevTaxesPaid = prevTaxesPaid;
+        this.profile = profile;
+        this.dependents = dependents;
     }
 
     public FinanceInfo(int id, String filingStatus, String spouseFirstName, String spouseMiddleInitial,
             String spouseLastName, int spouseSsn, int w2Income, int otherIncome, int taxWithheldW2, int taxWithheld1099,
-            int taxWithheldOther, int prevTaxesPaid, Profile profile) {
+            int taxWithheldOther, int prevTaxesPaid, Profile profile, Set<Dependent> dependents) {
         this.id = id;
         this.filingStatus = filingStatus;
         this.spouseFirstName = spouseFirstName;
@@ -73,6 +97,7 @@ public class FinanceInfo {
         this.taxWithheldOther = taxWithheldOther;
         this.prevTaxesPaid = prevTaxesPaid;
         this.profile = profile;
+        this.dependents = dependents;
     }
 
     public int getId() {
@@ -179,6 +204,14 @@ public class FinanceInfo {
         this.profile = profile;
     }
 
+    public Set<Dependent> getDependents() {
+        return dependents;
+    }
+
+    public void setDependents(Set<Dependent> dependents) {
+        this.dependents = dependents;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -196,6 +229,7 @@ public class FinanceInfo {
         result = prime * result + taxWithheldOther;
         result = prime * result + prevTaxesPaid;
         result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+        result = prime * result + ((dependents == null) ? 0 : dependents.hashCode());
         return result;
     }
 
@@ -249,6 +283,11 @@ public class FinanceInfo {
                 return false;
         } else if (!profile.equals(other.profile))
             return false;
+        if (dependents == null) {
+            if (other.dependents != null)
+                return false;
+        } else if (!dependents.equals(other.dependents))
+            return false;
         return true;
     }
 
@@ -257,9 +296,9 @@ public class FinanceInfo {
         return "FinanceInfo [id=" + id + ", filingStatus=" + filingStatus + ", spouseFirstName=" + spouseFirstName
                 + ", spouseMiddleInitial=" + spouseMiddleInitial + ", spouseLastName=" + spouseLastName + ", spouseSsn="
                 + spouseSsn + ", w2Income=" + w2Income + ", otherIncome=" + otherIncome + ", taxWithheldW2="
-                + taxWithheldW2
-                + ", taxWithheld1099=" + taxWithheld1099 + ", taxWithheldOther=" + taxWithheldOther + ", prevTaxesPaid="
-                + prevTaxesPaid + ", profile=" + profile + "]";
+                + taxWithheldW2 + ", taxWithheld1099=" + taxWithheld1099 + ", taxWithheldOther=" + taxWithheldOther
+                + ", prevTaxesPaid=" + prevTaxesPaid + ", profile=" + profile + "]";
     }
+
 
 }

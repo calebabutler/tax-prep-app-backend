@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -49,14 +51,34 @@ public class Profile {
     @Column
     private int ssn;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToMany(targetEntity = FinanceInfo.class, mappedBy = "profile")
     private Set<FinanceInfo> financeInfo;
 
     public Profile() {
     }
 
+    public Profile(String firstName, String middleInitial, String lastName, int dateOfBirth, String address,
+            String city, String state, int aptNumber, int zipCode, int ssn, User user, Set<FinanceInfo> financeInfo) {
+        this.firstName = firstName;
+        this.middleInitial = middleInitial;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.aptNumber = aptNumber;
+        this.zipCode = zipCode;
+        this.ssn = ssn;
+        this.user = user;
+        this.financeInfo = financeInfo;
+    }
+
     public Profile(int id, String firstName, String middleInitial, String lastName, int dateOfBirth, String address,
-            String city, String state, int aptNumber, int zipCode, int ssn) {
+            String city, String state, int aptNumber, int zipCode, int ssn, User user, Set<FinanceInfo> financeInfo) {
         this.id = id;
         this.firstName = firstName;
         this.middleInitial = middleInitial;
@@ -68,6 +90,8 @@ public class Profile {
         this.aptNumber = aptNumber;
         this.zipCode = zipCode;
         this.ssn = ssn;
+        this.user = user;
+        this.financeInfo = financeInfo;
     }
 
     public int getId() {
@@ -158,6 +182,22 @@ public class Profile {
         this.ssn = ssn;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<FinanceInfo> getFinanceInfo() {
+        return financeInfo;
+    }
+
+    public void setFinanceInfo(Set<FinanceInfo> financeInfo) {
+        this.financeInfo = financeInfo;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -173,6 +213,8 @@ public class Profile {
         result = prime * result + aptNumber;
         result = prime * result + zipCode;
         result = prime * result + ssn;
+        result = prime * result + ((user == null) ? 0 : user.hashCode());
+        result = prime * result + ((financeInfo == null) ? 0 : financeInfo.hashCode());
         return result;
     }
 
@@ -225,6 +267,16 @@ public class Profile {
             return false;
         if (ssn != other.ssn)
             return false;
+        if (user == null) {
+            if (other.user != null)
+                return false;
+        } else if (!user.equals(other.user))
+            return false;
+        if (financeInfo == null) {
+            if (other.financeInfo != null)
+                return false;
+        } else if (!financeInfo.equals(other.financeInfo))
+            return false;
         return true;
     }
 
@@ -232,8 +284,7 @@ public class Profile {
     public String toString() {
         return "Profile [id=" + id + ", firstName=" + firstName + ", middleInitial=" + middleInitial + ", lastName="
                 + lastName + ", dateOfBirth=" + dateOfBirth + ", address=" + address + ", city=" + city + ", state="
-                + state
-                + ", aptNumber=" + aptNumber + ", zipCode=" + zipCode + ", ssn=" + ssn + "]";
+                + state + ", aptNumber=" + aptNumber + ", zipCode=" + zipCode + ", ssn=" + ssn + ", user=" + user + "]";
     }
 
 }
