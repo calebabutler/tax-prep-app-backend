@@ -16,7 +16,7 @@ public class User {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -45,7 +45,7 @@ public class User {
         this.profiles = profiles;
     }
 
-    public User(int id, String firstName, String lastName, String email, String password, Set<Profile> profiles) {
+    public User(Integer id, String firstName, String lastName, String email, String password, Set<Profile> profiles) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,11 +54,11 @@ public class User {
         this.profiles = profiles;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
