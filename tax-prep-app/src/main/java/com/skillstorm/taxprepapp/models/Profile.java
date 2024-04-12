@@ -19,7 +19,7 @@ public class Profile {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -31,7 +31,7 @@ public class Profile {
     private String lastName;
 
     @Column(name = "date_of_birth")
-    private int dateOfBirth;
+    private Integer dateOfBirth;
 
     @Column
     private String address;
@@ -43,13 +43,13 @@ public class Profile {
     private String state;
 
     @Column(name = "apt_number")
-    private int aptNumber;
+    private Integer aptNumber;
 
     @Column(name = "zip_code")
-    private int zipCode;
+    private Integer zipCode;
 
     @Column
-    private int ssn;
+    private Integer ssn;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -61,8 +61,8 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(String firstName, String middleInitial, String lastName, int dateOfBirth, String address,
-            String city, String state, int aptNumber, int zipCode, int ssn, User user, Set<FinanceInfo> financeInfo) {
+    public Profile(String firstName, String middleInitial, String lastName, Integer dateOfBirth, String address,
+            String city, String state, Integer aptNumber, Integer zipCode, Integer ssn, User user, Set<FinanceInfo> financeInfo) {
         this.firstName = firstName;
         this.middleInitial = middleInitial;
         this.lastName = lastName;
@@ -77,8 +77,8 @@ public class Profile {
         this.financeInfo = financeInfo;
     }
 
-    public Profile(int id, String firstName, String middleInitial, String lastName, int dateOfBirth, String address,
-            String city, String state, int aptNumber, int zipCode, int ssn, User user, Set<FinanceInfo> financeInfo) {
+    public Profile(Integer id, String firstName, String middleInitial, String lastName, Integer dateOfBirth, String address,
+            String city, String state, Integer aptNumber, Integer zipCode, Integer ssn, User user, Set<FinanceInfo> financeInfo) {
         this.id = id;
         this.firstName = firstName;
         this.middleInitial = middleInitial;
@@ -94,11 +94,11 @@ public class Profile {
         this.financeInfo = financeInfo;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -126,11 +126,11 @@ public class Profile {
         this.lastName = lastName;
     }
 
-    public int getDateOfBirth() {
+    public Integer getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(int dateOfBirth) {
+    public void setDateOfBirth(Integer dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -158,27 +158,27 @@ public class Profile {
         this.state = state;
     }
 
-    public int getAptNumber() {
+    public Integer getAptNumber() {
         return aptNumber;
     }
 
-    public void setAptNumber(int aptNumber) {
+    public void setAptNumber(Integer aptNumber) {
         this.aptNumber = aptNumber;
     }
 
-    public int getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(Integer zipCode) {
         this.zipCode = zipCode;
     }
 
-    public int getSsn() {
+    public Integer getSsn() {
         return ssn;
     }
 
-    public void setSsn(int ssn) {
+    public void setSsn(Integer ssn) {
         this.ssn = ssn;
     }
 

@@ -18,7 +18,7 @@ public class FinanceInfo {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "filing_status")
     private String filingStatus;
@@ -33,25 +33,25 @@ public class FinanceInfo {
     private String spouseLastName;
 
     @Column(name = "spouse_ssn")
-    private int spouseSsn;
+    private Integer spouseSsn;
 
     @Column(name = "w2_income")
-    private int w2Income;
+    private Integer w2Income;
 
     @Column(name = "other_income")
-    private int otherIncome;
+    private Integer otherIncome;
 
     @Column(name = "tax_withheld_w2")
-    private int taxWithheldW2;
+    private Integer taxWithheldW2;
 
     @Column(name = "tax_withheld_1099")
-    private int taxWithheld1099;
+    private Integer taxWithheld1099;
 
     @Column(name = "tax_withheld_other")
-    private int taxWithheldOther;
+    private Integer taxWithheldOther;
 
     @Column(name = "prev_taxes_paid")
-    private int prevTaxesPaid;
+    private Integer prevTaxesPaid;
 
     @ManyToOne
     @JoinColumn(name = "profile_id")
@@ -64,8 +64,8 @@ public class FinanceInfo {
     }
 
     public FinanceInfo(String filingStatus, String spouseFirstName, String spouseMiddleInitial, String spouseLastName,
-            int spouseSsn, int w2Income, int otherIncome, int taxWithheldW2, int taxWithheld1099, int taxWithheldOther,
-            int prevTaxesPaid, Profile profile, Set<Dependent> dependents) {
+            Integer spouseSsn, Integer w2Income, Integer otherIncome, Integer taxWithheldW2, Integer taxWithheld1099, Integer taxWithheldOther,
+            Integer prevTaxesPaid, Profile profile, Set<Dependent> dependents) {
         this.filingStatus = filingStatus;
         this.spouseFirstName = spouseFirstName;
         this.spouseMiddleInitial = spouseMiddleInitial;
@@ -81,9 +81,9 @@ public class FinanceInfo {
         this.dependents = dependents;
     }
 
-    public FinanceInfo(int id, String filingStatus, String spouseFirstName, String spouseMiddleInitial,
-            String spouseLastName, int spouseSsn, int w2Income, int otherIncome, int taxWithheldW2, int taxWithheld1099,
-            int taxWithheldOther, int prevTaxesPaid, Profile profile, Set<Dependent> dependents) {
+    public FinanceInfo(Integer id, String filingStatus, String spouseFirstName, String spouseMiddleInitial,
+            String spouseLastName, Integer spouseSsn, Integer w2Income, Integer otherIncome, Integer taxWithheldW2, Integer taxWithheld1099,
+            Integer taxWithheldOther, Integer prevTaxesPaid, Profile profile, Set<Dependent> dependents) {
         this.id = id;
         this.filingStatus = filingStatus;
         this.spouseFirstName = spouseFirstName;
@@ -100,11 +100,11 @@ public class FinanceInfo {
         this.dependents = dependents;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -140,59 +140,59 @@ public class FinanceInfo {
         this.spouseLastName = spouseLastName;
     }
 
-    public int getSpouseSsn() {
+    public Integer getSpouseSsn() {
         return spouseSsn;
     }
 
-    public void setSpouseSsn(int spouseSsn) {
+    public void setSpouseSsn(Integer spouseSsn) {
         this.spouseSsn = spouseSsn;
     }
 
-    public int getW2Income() {
+    public Integer getW2Income() {
         return w2Income;
     }
 
-    public void setW2Income(int w2Income) {
+    public void setW2Income(Integer w2Income) {
         this.w2Income = w2Income;
     }
 
-    public int getOtherIncome() {
+    public Integer getOtherIncome() {
         return otherIncome;
     }
 
-    public void setOtherIncome(int otherIncome) {
+    public void setOtherIncome(Integer otherIncome) {
         this.otherIncome = otherIncome;
     }
 
-    public int getTaxWithheldW2() {
+    public Integer getTaxWithheldW2() {
         return taxWithheldW2;
     }
 
-    public void setTaxWithheldW2(int taxWithheldW2) {
+    public void setTaxWithheldW2(Integer taxWithheldW2) {
         this.taxWithheldW2 = taxWithheldW2;
     }
 
-    public int getTaxWithheld1099() {
+    public Integer getTaxWithheld1099() {
         return taxWithheld1099;
     }
 
-    public void setTaxWithheld1099(int taxWithheld1099) {
+    public void setTaxWithheld1099(Integer taxWithheld1099) {
         this.taxWithheld1099 = taxWithheld1099;
     }
 
-    public int getTaxWithheldOther() {
+    public Integer getTaxWithheldOther() {
         return taxWithheldOther;
     }
 
-    public void setTaxWithheldOther(int taxWithheldOther) {
+    public void setTaxWithheldOther(Integer taxWithheldOther) {
         this.taxWithheldOther = taxWithheldOther;
     }
 
-    public int getPrevTaxesPaid() {
+    public Integer getPrevTaxesPaid() {
         return prevTaxesPaid;
     }
 
-    public void setPrevTaxesPaid(int prevTaxesPaid) {
+    public void setPrevTaxesPaid(Integer prevTaxesPaid) {
         this.prevTaxesPaid = prevTaxesPaid;
     }
 
