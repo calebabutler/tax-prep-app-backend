@@ -16,7 +16,7 @@ public class Dependent {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -25,7 +25,7 @@ public class Dependent {
     private String lastName;
 
     @Column
-    private int ssn;
+    private Integer ssn;
 
     @Column
     private String relationship;
@@ -37,7 +37,7 @@ public class Dependent {
     public Dependent() {
     }
 
-    public Dependent(String firstName, String lastName, int ssn, String relationship, FinanceInfo financeInfo) {
+    public Dependent(String firstName, String lastName, Integer ssn, String relationship, FinanceInfo financeInfo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
@@ -45,7 +45,7 @@ public class Dependent {
         this.financeInfo = financeInfo;
     }
 
-    public Dependent(int id, String firstName, String lastName, int ssn, String relationship, FinanceInfo financeInfo) {
+    public Dependent(Integer id, String firstName, String lastName, Integer ssn, String relationship, FinanceInfo financeInfo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,11 +54,11 @@ public class Dependent {
         this.financeInfo = financeInfo;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -78,11 +78,11 @@ public class Dependent {
         this.lastName = lastName;
     }
 
-    public int getSsn() {
+    public Integer getSsn() {
         return ssn;
     }
 
-    public void setSsn(int ssn) {
+    public void setSsn(Integer ssn) {
         this.ssn = ssn;
     }
 
