@@ -11,8 +11,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "USERS")
-public class User {
+@Table(name = "APP_USERS")
+public class AppUser {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,25 +22,30 @@ public class User {
     private String email;
 
     // Note: passwords should not be stored in plain text!
-    @Column
+    @Column(name = "user_password")
     private String password;
+
+    @Column(name = "user_role")
+    private String role;
 
     @OneToMany(targetEntity = Profile.class, mappedBy = "user")
     private Set<Profile> profiles;
 
-    public User() {
+    public AppUser() {
     }
 
-    public User(String email, String password, Set<Profile> profiles) {
+    public AppUser(String email, String password, String role, Set<Profile> profiles) {
         this.email = email;
         this.password = password;
+        this.role = role;
         this.profiles = profiles;
     }
 
-    public User(Integer id, String email, String password, Set<Profile> profiles) {
+    public AppUser(Integer id, String email, String password, String role, Set<Profile> profiles) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.role = role;
         this.profiles = profiles;
     }
 
@@ -68,6 +73,14 @@ public class User {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public Set<Profile> getProfiles() {
         return profiles;
     }
@@ -83,6 +96,7 @@ public class User {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
+        result = prime * result + ((role == null) ? 0 : role.hashCode());
         result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
         return result;
     }
@@ -95,7 +109,7 @@ public class User {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        AppUser other = (AppUser) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -111,6 +125,11 @@ public class User {
                 return false;
         } else if (!password.equals(other.password))
             return false;
+        if (role == null) {
+            if (other.role != null)
+                return false;
+        } else if (!role.equals(other.role))
+            return false;
         if (profiles == null) {
             if (other.profiles != null)
                 return false;
@@ -121,7 +140,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", email=" + email + ", password=" + password + "]";
+        return "AppUser [id=" + id + ", email=" + email + ", password=" + password + ", role=" + role + "]";
     }
 
 }
