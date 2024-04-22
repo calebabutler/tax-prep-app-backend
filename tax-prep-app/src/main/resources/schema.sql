@@ -5,8 +5,6 @@ drop table if exists USERS;
 
 create table USERS (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
     email VARCHAR(50),
     password VARCHAR(50)
 );
@@ -42,14 +40,4 @@ create table FINANCES (
     prev_taxes_paid INT,
     profile_id INT,
     FOREIGN KEY (profile_id) REFERENCES PROFILES(id)
-);
-
-create table DEPENDENTS (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    ssn INT,
-    relationship VARCHAR(50),
-    finances_id INT,
-    FOREIGN KEY (finances_id) REFERENCES FINANCES(id)
 );

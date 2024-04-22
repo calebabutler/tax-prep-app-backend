@@ -11,9 +11,8 @@ public class UserService extends BaseService<User> {
 
     @Override
     public boolean isValidForCreate(User user) {
-        return user.getId() == null && user.getFirstName() != null
-                && user.getLastName() != null && user.getEmail() != null
-                && user.getPassword() != null && user.getProfiles() == null;
+        return user.getId() == null && user.getEmail() != null && user.getPassword() != null
+                && user.getProfiles() == null;
     }
 
     @Override

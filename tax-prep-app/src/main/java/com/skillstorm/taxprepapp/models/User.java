@@ -18,12 +18,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
     @Column
     private String email;
 
@@ -37,18 +31,14 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, Set<Profile> profiles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String email, String password, Set<Profile> profiles) {
         this.email = email;
         this.password = password;
         this.profiles = profiles;
     }
 
-    public User(Integer id, String firstName, String lastName, String email, String password, Set<Profile> profiles) {
+    public User(Integer id, String email, String password, Set<Profile> profiles) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.profiles = profiles;
@@ -60,22 +50,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -106,9 +80,7 @@ public class User {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
-        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
@@ -124,17 +96,10 @@ public class User {
         if (getClass() != obj.getClass())
             return false;
         User other = (User) obj;
-        if (id != other.id)
-            return false;
-        if (firstName == null) {
-            if (other.firstName != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!firstName.equals(other.firstName))
-            return false;
-        if (lastName == null) {
-            if (other.lastName != null)
-                return false;
-        } else if (!lastName.equals(other.lastName))
+        } else if (!id.equals(other.id))
             return false;
         if (email == null) {
             if (other.email != null)
@@ -156,8 +121,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-                + ", password=" + password + "]";
+        return "User [id=" + id + ", email=" + email + ", password=" + password + "]";
     }
 
 }
