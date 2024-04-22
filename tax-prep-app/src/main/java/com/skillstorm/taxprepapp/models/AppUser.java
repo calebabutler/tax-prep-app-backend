@@ -11,46 +11,41 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "USERS")
-public class User {
+@Table(name = "APP_USERS")
+public class AppUser {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
     @Column
     private String email;
 
     // Note: passwords should not be stored in plain text!
-    @Column
+    @Column(name = "user_password")
     private String password;
+
+    @Column(name = "user_role")
+    private String role;
 
     @OneToMany(targetEntity = Profile.class, mappedBy = "user")
     private Set<Profile> profiles;
 
-    public User() {
+    public AppUser() {
     }
 
-    public User(String firstName, String lastName, String email, String password, Set<Profile> profiles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public AppUser(String email, String password, String role, Set<Profile> profiles) {
         this.email = email;
         this.password = password;
+        this.role = role;
         this.profiles = profiles;
     }
 
-    public User(Integer id, String firstName, String lastName, String email, String password, Set<Profile> profiles) {
+    public AppUser(Integer id, String email, String password, String role, Set<Profile> profiles) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.role = role;
         this.profiles = profiles;
     }
 
@@ -60,22 +55,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -94,6 +73,14 @@ public class User {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public Set<Profile> getProfiles() {
         return profiles;
     }
@@ -106,11 +93,10 @@ public class User {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
-        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
+        result = prime * result + ((role == null) ? 0 : role.hashCode());
         result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
         return result;
     }
@@ -123,18 +109,11 @@ public class User {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
-        if (id != other.id)
-            return false;
-        if (firstName == null) {
-            if (other.firstName != null)
+        AppUser other = (AppUser) obj;
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!firstName.equals(other.firstName))
-            return false;
-        if (lastName == null) {
-            if (other.lastName != null)
-                return false;
-        } else if (!lastName.equals(other.lastName))
+        } else if (!id.equals(other.id))
             return false;
         if (email == null) {
             if (other.email != null)
@@ -146,6 +125,11 @@ public class User {
                 return false;
         } else if (!password.equals(other.password))
             return false;
+        if (role == null) {
+            if (other.role != null)
+                return false;
+        } else if (!role.equals(other.role))
+            return false;
         if (profiles == null) {
             if (other.profiles != null)
                 return false;
@@ -156,8 +140,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-                + ", password=" + password + "]";
+        return "AppUser [id=" + id + ", email=" + email + ", password=" + password + ", role=" + role + "]";
     }
 
 }

@@ -52,8 +52,8 @@ public class Profile {
     private Integer ssn;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "app_user_id")
+    private AppUser user;
 
     @OneToMany(targetEntity = FinanceInfo.class, mappedBy = "profile")
     private Set<FinanceInfo> financeInfo;
@@ -62,7 +62,7 @@ public class Profile {
     }
 
     public Profile(String firstName, String middleInitial, String lastName, Integer dateOfBirth, String address,
-            String city, String state, Integer aptNumber, Integer zipCode, Integer ssn, User user, Set<FinanceInfo> financeInfo) {
+            String city, String state, Integer aptNumber, Integer zipCode, Integer ssn, AppUser user, Set<FinanceInfo> financeInfo) {
         this.firstName = firstName;
         this.middleInitial = middleInitial;
         this.lastName = lastName;
@@ -78,7 +78,7 @@ public class Profile {
     }
 
     public Profile(Integer id, String firstName, String middleInitial, String lastName, Integer dateOfBirth, String address,
-            String city, String state, Integer aptNumber, Integer zipCode, Integer ssn, User user, Set<FinanceInfo> financeInfo) {
+            String city, String state, Integer aptNumber, Integer zipCode, Integer ssn, AppUser user, Set<FinanceInfo> financeInfo) {
         this.id = id;
         this.firstName = firstName;
         this.middleInitial = middleInitial;
@@ -182,11 +182,11 @@ public class Profile {
         this.ssn = ssn;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 
