@@ -1,7 +1,5 @@
 package com.skillstorm.taxprepapp.models;
 
-import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -57,15 +54,12 @@ public class FinanceInfo {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
-    @OneToMany(targetEntity = Dependent.class, mappedBy = "financeInfo")
-    private Set<Dependent> dependents;
-
     public FinanceInfo() {
     }
 
     public FinanceInfo(String filingStatus, String spouseFirstName, String spouseMiddleInitial, String spouseLastName,
             Integer spouseSsn, Integer w2Income, Integer otherIncome, Integer taxWithheldW2, Integer taxWithheld1099, Integer taxWithheldOther,
-            Integer prevTaxesPaid, Profile profile, Set<Dependent> dependents) {
+            Integer prevTaxesPaid, Profile profile) {
         this.filingStatus = filingStatus;
         this.spouseFirstName = spouseFirstName;
         this.spouseMiddleInitial = spouseMiddleInitial;
@@ -78,12 +72,11 @@ public class FinanceInfo {
         this.taxWithheldOther = taxWithheldOther;
         this.prevTaxesPaid = prevTaxesPaid;
         this.profile = profile;
-        this.dependents = dependents;
     }
 
     public FinanceInfo(Integer id, String filingStatus, String spouseFirstName, String spouseMiddleInitial,
             String spouseLastName, Integer spouseSsn, Integer w2Income, Integer otherIncome, Integer taxWithheldW2, Integer taxWithheld1099,
-            Integer taxWithheldOther, Integer prevTaxesPaid, Profile profile, Set<Dependent> dependents) {
+            Integer taxWithheldOther, Integer prevTaxesPaid, Profile profile) {
         this.id = id;
         this.filingStatus = filingStatus;
         this.spouseFirstName = spouseFirstName;
@@ -97,7 +90,6 @@ public class FinanceInfo {
         this.taxWithheldOther = taxWithheldOther;
         this.prevTaxesPaid = prevTaxesPaid;
         this.profile = profile;
-        this.dependents = dependents;
     }
 
     public Integer getId() {
@@ -204,32 +196,23 @@ public class FinanceInfo {
         this.profile = profile;
     }
 
-    public Set<Dependent> getDependents() {
-        return dependents;
-    }
-
-    public void setDependents(Set<Dependent> dependents) {
-        this.dependents = dependents;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((filingStatus == null) ? 0 : filingStatus.hashCode());
         result = prime * result + ((spouseFirstName == null) ? 0 : spouseFirstName.hashCode());
         result = prime * result + ((spouseMiddleInitial == null) ? 0 : spouseMiddleInitial.hashCode());
         result = prime * result + ((spouseLastName == null) ? 0 : spouseLastName.hashCode());
-        result = prime * result + spouseSsn;
-        result = prime * result + w2Income;
-        result = prime * result + otherIncome;
-        result = prime * result + taxWithheldW2;
-        result = prime * result + taxWithheld1099;
-        result = prime * result + taxWithheldOther;
-        result = prime * result + prevTaxesPaid;
+        result = prime * result + ((spouseSsn == null) ? 0 : spouseSsn.hashCode());
+        result = prime * result + ((w2Income == null) ? 0 : w2Income.hashCode());
+        result = prime * result + ((otherIncome == null) ? 0 : otherIncome.hashCode());
+        result = prime * result + ((taxWithheldW2 == null) ? 0 : taxWithheldW2.hashCode());
+        result = prime * result + ((taxWithheld1099 == null) ? 0 : taxWithheld1099.hashCode());
+        result = prime * result + ((taxWithheldOther == null) ? 0 : taxWithheldOther.hashCode());
+        result = prime * result + ((prevTaxesPaid == null) ? 0 : prevTaxesPaid.hashCode());
         result = prime * result + ((profile == null) ? 0 : profile.hashCode());
-        result = prime * result + ((dependents == null) ? 0 : dependents.hashCode());
         return result;
     }
 
@@ -242,7 +225,10 @@ public class FinanceInfo {
         if (getClass() != obj.getClass())
             return false;
         FinanceInfo other = (FinanceInfo) obj;
-        if (id != other.id)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (filingStatus == null) {
             if (other.filingStatus != null)
@@ -264,29 +250,45 @@ public class FinanceInfo {
                 return false;
         } else if (!spouseLastName.equals(other.spouseLastName))
             return false;
-        if (spouseSsn != other.spouseSsn)
+        if (spouseSsn == null) {
+            if (other.spouseSsn != null)
+                return false;
+        } else if (!spouseSsn.equals(other.spouseSsn))
             return false;
-        if (w2Income != other.w2Income)
+        if (w2Income == null) {
+            if (other.w2Income != null)
+                return false;
+        } else if (!w2Income.equals(other.w2Income))
             return false;
-        if (otherIncome != other.otherIncome)
+        if (otherIncome == null) {
+            if (other.otherIncome != null)
+                return false;
+        } else if (!otherIncome.equals(other.otherIncome))
             return false;
-        if (taxWithheldW2 != other.taxWithheldW2)
+        if (taxWithheldW2 == null) {
+            if (other.taxWithheldW2 != null)
+                return false;
+        } else if (!taxWithheldW2.equals(other.taxWithheldW2))
             return false;
-        if (taxWithheld1099 != other.taxWithheld1099)
+        if (taxWithheld1099 == null) {
+            if (other.taxWithheld1099 != null)
+                return false;
+        } else if (!taxWithheld1099.equals(other.taxWithheld1099))
             return false;
-        if (taxWithheldOther != other.taxWithheldOther)
+        if (taxWithheldOther == null) {
+            if (other.taxWithheldOther != null)
+                return false;
+        } else if (!taxWithheldOther.equals(other.taxWithheldOther))
             return false;
-        if (prevTaxesPaid != other.prevTaxesPaid)
+        if (prevTaxesPaid == null) {
+            if (other.prevTaxesPaid != null)
+                return false;
+        } else if (!prevTaxesPaid.equals(other.prevTaxesPaid))
             return false;
         if (profile == null) {
             if (other.profile != null)
                 return false;
         } else if (!profile.equals(other.profile))
-            return false;
-        if (dependents == null) {
-            if (other.dependents != null)
-                return false;
-        } else if (!dependents.equals(other.dependents))
             return false;
         return true;
     }
@@ -299,6 +301,5 @@ public class FinanceInfo {
                 + taxWithheldW2 + ", taxWithheld1099=" + taxWithheld1099 + ", taxWithheldOther=" + taxWithheldOther
                 + ", prevTaxesPaid=" + prevTaxesPaid + ", profile=" + profile + "]";
     }
-
 
 }
