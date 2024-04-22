@@ -15,8 +15,7 @@ public class FinanceInfoService extends BaseService<FinanceInfo> {
                 && info.getSpouseMiddleInitial() != null && info.getSpouseLastName() != null
                 && info.getSpouseSsn() != null && info.getW2Income() != null && info.getOtherIncome() != null
                 && info.getTaxWithheldW2() != null && info.getTaxWithheld1099() != null
-                && info.getTaxWithheldOther() != null && info.getPrevTaxesPaid() != null && info.getProfile() != null
-                && info.getDependents() == null;
+                && info.getTaxWithheldOther() != null && info.getPrevTaxesPaid() != null && info.getProfile() != null;
     }
 
     @Override
