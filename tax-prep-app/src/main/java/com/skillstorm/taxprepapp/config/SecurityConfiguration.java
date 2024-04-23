@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
@@ -16,10 +17,12 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((request) ->
-            request.requestMatchers("finances").authenticated()
-                   .requestMatchers("profiles").authenticated()
-                   .requestMatchers("users").authenticated()
+            request.requestMatchers("users/register").permitAll()
         ).formLogin(Customizer.withDefaults());
+
+        http.csrf((csrf) ->
+            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers("/users/register")
+        ); 
 
         return http.build();
     }
