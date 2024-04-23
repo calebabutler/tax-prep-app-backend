@@ -6,7 +6,7 @@ drop table if exists APP_USERS;
 create table APP_USERS (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(50),
-    user_password VARCHAR(50),
+    user_password VARCHAR(60),
     user_role VARCHAR(50)
 );
 
