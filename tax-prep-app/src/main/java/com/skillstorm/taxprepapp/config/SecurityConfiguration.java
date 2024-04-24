@@ -18,7 +18,8 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((request) ->
             request.requestMatchers("users/register").permitAll()
-        ).formLogin(Customizer.withDefaults());
+                    .requestMatchers("users/hello").authenticated()
+        ).httpBasic(Customizer.withDefaults());
 
         http.csrf((csrf) ->
             csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers("/users/register")
