@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
@@ -18,12 +19,15 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((request) ->
             request.requestMatchers("users/register").permitAll()
+                    .requestMatchers("users/goodbye").permitAll()
                     .requestMatchers("users/hello").authenticated()
-        ).httpBasic(Customizer.withDefaults());
+        ).formLogin(formLogin ->
+                formLogin.loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/users/hello", true)
+                        .failureHandler(new SimpleUrlAuthenticationFailureHandler("/users/goodbye"))
+        );
 
-        http.csrf((csrf) ->
-            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers("/users/register")
-        ); 
+        http.csrf((csrf) -> csrf.disable());
 
         return http.build();
     }

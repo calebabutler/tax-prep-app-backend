@@ -17,8 +17,13 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/hello")
-    public String hello() {
-        return "Hello";
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok().body("Hello");
+    }
+
+    @GetMapping("/goodbye")
+    public ResponseEntity<String> goodbye() {
+        return ResponseEntity.badRequest().body("Goodbye");
     }
 
     @PostMapping("/register")
