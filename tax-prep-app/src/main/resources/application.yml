@@ -9,3 +9,10 @@ spring:
         defer-datasource-initialization: true
     application:
         name: spring-data-jpa
+    security:
+        oauth2:
+            client:
+                registration: 
+                    google: 
+                        clientId: 
+                        clientSecret: 
