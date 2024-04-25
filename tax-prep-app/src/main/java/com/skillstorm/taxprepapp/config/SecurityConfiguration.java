@@ -16,26 +16,12 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((request) ->
-            request.anyRequest().authenticated()
-                    // .requestMatchers("users/register").permitAll()
-                    // .requestMatchers("users/goodbye").permitAll()
-                    // .requestMatchers("users/hello").authenticated()
-        // ).formLogin(formLogin ->
-        //         formLogin.loginProcessingUrl("/login")
-        //                 .defaultSuccessUrl("/users/hello", true)
-        //                 .failureHandler(new SimpleUrlAuthenticationFailureHandler("/users/goodbye"))
-        );
+        http.authorizeHttpRequests((request) -> request.anyRequest().authenticated());
 
         http.csrf((csrf) -> csrf.disable());
         http.oauth2Login(withDefaults());
 
         return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
     }
 
 }

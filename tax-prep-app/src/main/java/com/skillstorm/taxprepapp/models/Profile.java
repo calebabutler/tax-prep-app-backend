@@ -1,15 +1,12 @@
 package com.skillstorm.taxprepapp.models;
 
-import java.util.Set;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -51,34 +48,15 @@ public class Profile {
     @Column
     private Integer ssn;
 
-    @ManyToOne
-    @JoinColumn(name = "app_user_id")
-    private AppUser user;
-
-    @OneToMany(targetEntity = FinanceInfo.class, mappedBy = "profile")
-    private Set<FinanceInfo> financeInfo;
+    @Column(name = "oauth_id")
+    private String oauthId;
 
     public Profile() {
     }
 
-    public Profile(String firstName, String middleInitial, String lastName, Integer dateOfBirth, String address,
-            String city, String state, Integer aptNumber, Integer zipCode, Integer ssn, AppUser user, Set<FinanceInfo> financeInfo) {
-        this.firstName = firstName;
-        this.middleInitial = middleInitial;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.aptNumber = aptNumber;
-        this.zipCode = zipCode;
-        this.ssn = ssn;
-        this.user = user;
-        this.financeInfo = financeInfo;
-    }
-
-    public Profile(Integer id, String firstName, String middleInitial, String lastName, Integer dateOfBirth, String address,
-            String city, String state, Integer aptNumber, Integer zipCode, Integer ssn, AppUser user, Set<FinanceInfo> financeInfo) {
+    public Profile(Integer id, String firstName, String middleInitial, String lastName, Integer dateOfBirth,
+                   String address, String city, String state, Integer aptNumber, Integer zipCode, Integer ssn,
+                   String oauthId) {
         this.id = id;
         this.firstName = firstName;
         this.middleInitial = middleInitial;
@@ -90,8 +68,7 @@ public class Profile {
         this.aptNumber = aptNumber;
         this.zipCode = zipCode;
         this.ssn = ssn;
-        this.user = user;
-        this.financeInfo = financeInfo;
+        this.oauthId = oauthId;
     }
 
     public Integer getId() {
@@ -182,109 +159,63 @@ public class Profile {
         this.ssn = ssn;
     }
 
-    public AppUser getUser() {
-        return user;
+    public String getOauthId() {
+        return oauthId;
     }
 
-    public void setUser(AppUser user) {
-        this.user = user;
+    public void setOauthId(String oauthId) {
+        this.oauthId = oauthId;
     }
 
-    public Set<FinanceInfo> getFinanceInfo() {
-        return financeInfo;
-    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    public void setFinanceInfo(Set<FinanceInfo> financeInfo) {
-        this.financeInfo = financeInfo;
+        Profile profile = (Profile) o;
+        return Objects.equals(id, profile.id) && Objects.equals(firstName, profile.firstName) &&
+                Objects.equals(middleInitial, profile.middleInitial) &&
+                Objects.equals(lastName, profile.lastName) &&
+                Objects.equals(dateOfBirth, profile.dateOfBirth) &&
+                Objects.equals(address, profile.address) && Objects.equals(city, profile.city) &&
+                Objects.equals(state, profile.state) && Objects.equals(aptNumber, profile.aptNumber) &&
+                Objects.equals(zipCode, profile.zipCode) && Objects.equals(ssn, profile.ssn) &&
+                Objects.equals(oauthId, profile.oauthId);
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-        result = prime * result + ((middleInitial == null) ? 0 : middleInitial.hashCode());
-        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-        result = prime * result + dateOfBirth;
-        result = prime * result + ((address == null) ? 0 : address.hashCode());
-        result = prime * result + ((city == null) ? 0 : city.hashCode());
-        result = prime * result + ((state == null) ? 0 : state.hashCode());
-        result = prime * result + aptNumber;
-        result = prime * result + zipCode;
-        result = prime * result + ssn;
-        result = prime * result + ((user == null) ? 0 : user.hashCode());
-        result = prime * result + ((financeInfo == null) ? 0 : financeInfo.hashCode());
+        int result = Objects.hashCode(id);
+        result = 31 * result + Objects.hashCode(firstName);
+        result = 31 * result + Objects.hashCode(middleInitial);
+        result = 31 * result + Objects.hashCode(lastName);
+        result = 31 * result + Objects.hashCode(dateOfBirth);
+        result = 31 * result + Objects.hashCode(address);
+        result = 31 * result + Objects.hashCode(city);
+        result = 31 * result + Objects.hashCode(state);
+        result = 31 * result + Objects.hashCode(aptNumber);
+        result = 31 * result + Objects.hashCode(zipCode);
+        result = 31 * result + Objects.hashCode(ssn);
+        result = 31 * result + Objects.hashCode(oauthId);
         return result;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Profile other = (Profile) obj;
-        if (id != other.id)
-            return false;
-        if (firstName == null) {
-            if (other.firstName != null)
-                return false;
-        } else if (!firstName.equals(other.firstName))
-            return false;
-        if (middleInitial == null) {
-            if (other.middleInitial != null)
-                return false;
-        } else if (!middleInitial.equals(other.middleInitial))
-            return false;
-        if (lastName == null) {
-            if (other.lastName != null)
-                return false;
-        } else if (!lastName.equals(other.lastName))
-            return false;
-        if (dateOfBirth != other.dateOfBirth)
-            return false;
-        if (address == null) {
-            if (other.address != null)
-                return false;
-        } else if (!address.equals(other.address))
-            return false;
-        if (city == null) {
-            if (other.city != null)
-                return false;
-        } else if (!city.equals(other.city))
-            return false;
-        if (state == null) {
-            if (other.state != null)
-                return false;
-        } else if (!state.equals(other.state))
-            return false;
-        if (aptNumber != other.aptNumber)
-            return false;
-        if (zipCode != other.zipCode)
-            return false;
-        if (ssn != other.ssn)
-            return false;
-        if (user == null) {
-            if (other.user != null)
-                return false;
-        } else if (!user.equals(other.user))
-            return false;
-        if (financeInfo == null) {
-            if (other.financeInfo != null)
-                return false;
-        } else if (!financeInfo.equals(other.financeInfo))
-            return false;
-        return true;
-    }
-
-    @Override
     public String toString() {
-        return "Profile [id=" + id + ", firstName=" + firstName + ", middleInitial=" + middleInitial + ", lastName="
-                + lastName + ", dateOfBirth=" + dateOfBirth + ", address=" + address + ", city=" + city + ", state="
-                + state + ", aptNumber=" + aptNumber + ", zipCode=" + zipCode + ", ssn=" + ssn + ", user=" + user + "]";
+        return "Profile{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", middleInitial='" + middleInitial + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", aptNumber=" + aptNumber +
+                ", zipCode=" + zipCode +
+                ", ssn=" + ssn +
+                ", oauthId='" + oauthId + '\'' +
+                '}';
     }
 
 }

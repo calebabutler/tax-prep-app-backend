@@ -14,5 +14,5 @@ spring:
             client:
                 registration: 
                     google: 
-                        clientId: 
-                        clientSecret: 
+                        clientId: # Insert client id
+                        clientSecret: # Insert client secret
