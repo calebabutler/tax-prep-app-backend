@@ -2,7 +2,6 @@ package com.skillstorm.taxprepapp.models;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -79,10 +78,6 @@ public class AppUser implements UserDetails {
         return authorities;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     @Override
     public String getUsername() {
         return email;
@@ -106,6 +101,10 @@ public class AppUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
