@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.skillstorm.taxprepapp.models.FinanceInfo;
 
+import java.util.List;
+
 @Repository
 public interface FinanceInfoRepository extends JpaRepository<FinanceInfo, Integer> {
+    List<FinanceInfo> findByOauthId(String oauthId);
 }

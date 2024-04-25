@@ -9,7 +9,8 @@ insert into PROFILES (
         state,
         apt_number,
         zip_code,
-        ssn
+        ssn,
+        oauth_id
     )
 values (
         'Tom',
@@ -21,5 +22,6 @@ values (
         'MO',
         null,
         11111,
-        00000000
+        00000000,
+        '' /* Insert oauth ID */
     );

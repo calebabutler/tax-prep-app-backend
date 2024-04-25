@@ -1,14 +1,6 @@
 drop table if exists DEPENDENTS;
 drop table if exists FINANCES;
 drop table if exists PROFILES;
-drop table if exists APP_USERS;
-
-create table APP_USERS (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(50),
-    user_password VARCHAR(60),
-    user_role VARCHAR(50)
-);
 
 create table PROFILES (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -22,8 +14,7 @@ create table PROFILES (
     apt_number INT,
     zip_code INT,
     ssn INT,
-    app_user_id INT,
-    FOREIGN KEY (app_user_id) REFERENCES APP_USERS(id)
+    oauth_id VARCHAR(50)
 );
 
 create table FINANCES (
@@ -39,6 +30,5 @@ create table FINANCES (
     tax_withheld_1099 INT,
     tax_withheld_other INT,
     prev_taxes_paid INT,
-    profile_id INT,
-    FOREIGN KEY (profile_id) REFERENCES PROFILES(id)
+    oauth_id VARCHAR(50)
 );
