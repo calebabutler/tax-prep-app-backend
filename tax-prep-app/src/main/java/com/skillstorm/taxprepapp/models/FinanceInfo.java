@@ -7,8 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "FINANCES")
 public class FinanceInfo {
@@ -31,6 +29,9 @@ public class FinanceInfo {
 
     @Column(name = "spouse_ssn")
     private Integer spouseSsn;
+
+    @Column(name = "spouse_date_of_birth")
+    private Integer spouseDateOfBirth;
 
     @Column(name = "w2_income")
     private Integer w2Income;
@@ -56,16 +57,35 @@ public class FinanceInfo {
     public FinanceInfo() {
     }
 
+    public FinanceInfo(String filingStatus, String spouseFirstName, String spouseMiddleInitial, String spouseLastName,
+            Integer spouseSsn, Integer spouseDateOfBirth, Integer w2Income, Integer otherIncome, Integer taxWithheldW2,
+            Integer taxWithheld1099, Integer taxWithheldOther, Integer prevTaxesPaid, String oauthId) {
+        this.filingStatus = filingStatus;
+        this.spouseFirstName = spouseFirstName;
+        this.spouseMiddleInitial = spouseMiddleInitial;
+        this.spouseLastName = spouseLastName;
+        this.spouseSsn = spouseSsn;
+        this.spouseDateOfBirth = spouseDateOfBirth;
+        this.w2Income = w2Income;
+        this.otherIncome = otherIncome;
+        this.taxWithheldW2 = taxWithheldW2;
+        this.taxWithheld1099 = taxWithheld1099;
+        this.taxWithheldOther = taxWithheldOther;
+        this.prevTaxesPaid = prevTaxesPaid;
+        this.oauthId = oauthId;
+    }
+
     public FinanceInfo(Integer id, String filingStatus, String spouseFirstName, String spouseMiddleInitial,
-                       String spouseLastName, Integer spouseSsn, Integer w2Income, Integer otherIncome,
-                       Integer taxWithheldW2, Integer taxWithheld1099, Integer taxWithheldOther, Integer prevTaxesPaid,
-                       String oauthId) {
+            String spouseLastName, Integer spouseSsn, Integer spouseDateOfBirth, Integer w2Income, Integer otherIncome,
+            Integer taxWithheldW2, Integer taxWithheld1099, Integer taxWithheldOther, Integer prevTaxesPaid,
+            String oauthId) {
         this.id = id;
         this.filingStatus = filingStatus;
         this.spouseFirstName = spouseFirstName;
         this.spouseMiddleInitial = spouseMiddleInitial;
         this.spouseLastName = spouseLastName;
         this.spouseSsn = spouseSsn;
+        this.spouseDateOfBirth = spouseDateOfBirth;
         this.w2Income = w2Income;
         this.otherIncome = otherIncome;
         this.taxWithheldW2 = taxWithheldW2;
@@ -121,6 +141,14 @@ public class FinanceInfo {
 
     public void setSpouseSsn(Integer spouseSsn) {
         this.spouseSsn = spouseSsn;
+    }
+
+    public Integer getSpouseDateOfBirth() {
+        return spouseDateOfBirth;
+    }
+
+    public void setSpouseDateOfBirth(Integer spouseDateOfBirth) {
+        this.spouseDateOfBirth = spouseDateOfBirth;
     }
 
     public Integer getW2Income() {
@@ -180,59 +208,116 @@ public class FinanceInfo {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        FinanceInfo that = (FinanceInfo) o;
-        return Objects.equals(id, that.id) && Objects.equals(filingStatus, that.filingStatus) &&
-                Objects.equals(spouseFirstName, that.spouseFirstName) &&
-                Objects.equals(spouseMiddleInitial, that.spouseMiddleInitial) &&
-                Objects.equals(spouseLastName, that.spouseLastName) &&
-                Objects.equals(spouseSsn, that.spouseSsn) && Objects.equals(w2Income, that.w2Income) &&
-                Objects.equals(otherIncome, that.otherIncome) &&
-                Objects.equals(taxWithheldW2, that.taxWithheldW2) &&
-                Objects.equals(taxWithheld1099, that.taxWithheld1099) &&
-                Objects.equals(taxWithheldOther, that.taxWithheldOther) &&
-                Objects.equals(prevTaxesPaid, that.prevTaxesPaid) &&
-                Objects.equals(oauthId, that.oauthId);
-    }
-
-    @Override
     public int hashCode() {
-        int result = Objects.hashCode(id);
-        result = 31 * result + Objects.hashCode(filingStatus);
-        result = 31 * result + Objects.hashCode(spouseFirstName);
-        result = 31 * result + Objects.hashCode(spouseMiddleInitial);
-        result = 31 * result + Objects.hashCode(spouseLastName);
-        result = 31 * result + Objects.hashCode(spouseSsn);
-        result = 31 * result + Objects.hashCode(w2Income);
-        result = 31 * result + Objects.hashCode(otherIncome);
-        result = 31 * result + Objects.hashCode(taxWithheldW2);
-        result = 31 * result + Objects.hashCode(taxWithheld1099);
-        result = 31 * result + Objects.hashCode(taxWithheldOther);
-        result = 31 * result + Objects.hashCode(prevTaxesPaid);
-        result = 31 * result + Objects.hashCode(oauthId);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((filingStatus == null) ? 0 : filingStatus.hashCode());
+        result = prime * result + ((spouseFirstName == null) ? 0 : spouseFirstName.hashCode());
+        result = prime * result + ((spouseMiddleInitial == null) ? 0 : spouseMiddleInitial.hashCode());
+        result = prime * result + ((spouseLastName == null) ? 0 : spouseLastName.hashCode());
+        result = prime * result + ((spouseSsn == null) ? 0 : spouseSsn.hashCode());
+        result = prime * result + ((spouseDateOfBirth == null) ? 0 : spouseDateOfBirth.hashCode());
+        result = prime * result + ((w2Income == null) ? 0 : w2Income.hashCode());
+        result = prime * result + ((otherIncome == null) ? 0 : otherIncome.hashCode());
+        result = prime * result + ((taxWithheldW2 == null) ? 0 : taxWithheldW2.hashCode());
+        result = prime * result + ((taxWithheld1099 == null) ? 0 : taxWithheld1099.hashCode());
+        result = prime * result + ((taxWithheldOther == null) ? 0 : taxWithheldOther.hashCode());
+        result = prime * result + ((prevTaxesPaid == null) ? 0 : prevTaxesPaid.hashCode());
+        result = prime * result + ((oauthId == null) ? 0 : oauthId.hashCode());
         return result;
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        FinanceInfo other = (FinanceInfo) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (filingStatus == null) {
+            if (other.filingStatus != null)
+                return false;
+        } else if (!filingStatus.equals(other.filingStatus))
+            return false;
+        if (spouseFirstName == null) {
+            if (other.spouseFirstName != null)
+                return false;
+        } else if (!spouseFirstName.equals(other.spouseFirstName))
+            return false;
+        if (spouseMiddleInitial == null) {
+            if (other.spouseMiddleInitial != null)
+                return false;
+        } else if (!spouseMiddleInitial.equals(other.spouseMiddleInitial))
+            return false;
+        if (spouseLastName == null) {
+            if (other.spouseLastName != null)
+                return false;
+        } else if (!spouseLastName.equals(other.spouseLastName))
+            return false;
+        if (spouseSsn == null) {
+            if (other.spouseSsn != null)
+                return false;
+        } else if (!spouseSsn.equals(other.spouseSsn))
+            return false;
+        if (spouseDateOfBirth == null) {
+            if (other.spouseDateOfBirth != null)
+                return false;
+        } else if (!spouseDateOfBirth.equals(other.spouseDateOfBirth))
+            return false;
+        if (w2Income == null) {
+            if (other.w2Income != null)
+                return false;
+        } else if (!w2Income.equals(other.w2Income))
+            return false;
+        if (otherIncome == null) {
+            if (other.otherIncome != null)
+                return false;
+        } else if (!otherIncome.equals(other.otherIncome))
+            return false;
+        if (taxWithheldW2 == null) {
+            if (other.taxWithheldW2 != null)
+                return false;
+        } else if (!taxWithheldW2.equals(other.taxWithheldW2))
+            return false;
+        if (taxWithheld1099 == null) {
+            if (other.taxWithheld1099 != null)
+                return false;
+        } else if (!taxWithheld1099.equals(other.taxWithheld1099))
+            return false;
+        if (taxWithheldOther == null) {
+            if (other.taxWithheldOther != null)
+                return false;
+        } else if (!taxWithheldOther.equals(other.taxWithheldOther))
+            return false;
+        if (prevTaxesPaid == null) {
+            if (other.prevTaxesPaid != null)
+                return false;
+        } else if (!prevTaxesPaid.equals(other.prevTaxesPaid))
+            return false;
+        if (oauthId == null) {
+            if (other.oauthId != null)
+                return false;
+        } else if (!oauthId.equals(other.oauthId))
+            return false;
+        return true;
+    }
+
+    @Override
     public String toString() {
-        return "FinanceInfo{" +
-                "id=" + id +
-                ", filingStatus='" + filingStatus + '\'' +
-                ", spouseFirstName='" + spouseFirstName + '\'' +
-                ", spouseMiddleInitial='" + spouseMiddleInitial + '\'' +
-                ", spouseLastName='" + spouseLastName + '\'' +
-                ", spouseSsn=" + spouseSsn +
-                ", w2Income=" + w2Income +
-                ", otherIncome=" + otherIncome +
-                ", taxWithheldW2=" + taxWithheldW2 +
-                ", taxWithheld1099=" + taxWithheld1099 +
-                ", taxWithheldOther=" + taxWithheldOther +
-                ", prevTaxesPaid=" + prevTaxesPaid +
-                ", oauthId='" + oauthId + '\'' +
-                '}';
+        return "FinanceInfo [id=" + id + ", filingStatus=" + filingStatus + ", spouseFirstName=" + spouseFirstName
+                + ", spouseMiddleInitial=" + spouseMiddleInitial + ", spouseLastName=" + spouseLastName + ", spouseSsn="
+                + spouseSsn + ", spouseDateOfBirth=" + spouseDateOfBirth + ", w2Income=" + w2Income + ", otherIncome="
+                + otherIncome + ", taxWithheldW2=" + taxWithheldW2 + ", taxWithheld1099=" + taxWithheld1099
+                + ", taxWithheldOther=" + taxWithheldOther + ", prevTaxesPaid=" + prevTaxesPaid + ", oauthId=" + oauthId
+                + "]";
     }
 
 }
