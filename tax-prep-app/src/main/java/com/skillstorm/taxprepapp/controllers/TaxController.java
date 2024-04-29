@@ -7,7 +7,6 @@ import com.skillstorm.taxprepapp.services.FinanceInfoService;
 import com.skillstorm.taxprepapp.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +23,7 @@ public class TaxController {
     FinanceInfoService financeInfoService;
 
     @GetMapping("/calculate")
-    public ResponseEntity<Long> calculateTaxes(Principal principal, Authentication authentication) {
+    public ResponseEntity<Long> calculateTaxes(Principal principal) {
         String oauthId = principal.getName();
         Optional<Profile> profile = profileService.getProfile(oauthId);
         Optional<FinanceInfo> info = financeInfoService.getInfo(oauthId);

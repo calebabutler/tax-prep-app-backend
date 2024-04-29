@@ -4,7 +4,6 @@ import com.skillstorm.taxprepapp.models.FinanceInfo;
 import com.skillstorm.taxprepapp.services.FinanceInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -18,7 +17,7 @@ public class FinanceInfoController {
     FinanceInfoService financeInfoService;
 
     @GetMapping
-    public ResponseEntity<FinanceInfo> getInfo(Principal principal, Authentication authentication) {
+    public ResponseEntity<FinanceInfo> getInfo(Principal principal) {
         String oauthId = principal.getName();
         Optional<FinanceInfo> info = financeInfoService.getInfo(oauthId);
         if (info.isPresent()) {
@@ -28,8 +27,7 @@ public class FinanceInfoController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createInfo(Principal principal, Authentication authentication,
-                                           @RequestBody FinanceInfo info) {
+    public ResponseEntity<Void> createInfo(Principal principal, @RequestBody FinanceInfo info) {
         String oauthId = principal.getName();
         boolean successful = financeInfoService.createInfo(oauthId, info);
         if (successful) {
@@ -39,8 +37,7 @@ public class FinanceInfoController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> updateInfo(Principal principal, Authentication authentication,
-                                           @RequestBody FinanceInfo info) {
+    public ResponseEntity<Void> updateInfo(Principal principal, @RequestBody FinanceInfo info) {
         String oauthId = principal.getName();
         boolean successful = financeInfoService.updateInfo(oauthId, info);
         if (successful) {

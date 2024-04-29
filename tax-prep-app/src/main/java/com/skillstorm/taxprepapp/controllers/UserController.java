@@ -1,6 +1,7 @@
 package com.skillstorm.taxprepapp.controllers;
 
 
+import java.security.Principal;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,12 @@ public class UserController {
             return client.getAccessToken().getTokenValue();
         }
         return "";
+    }
+
+    @GetMapping("/oauthId")
+    @ResponseBody
+    public String getOAuthId(Principal principal){
+        return principal.getName();
     }
 
     @GetMapping("/signin")
