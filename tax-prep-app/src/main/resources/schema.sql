@@ -24,6 +24,7 @@ create table FINANCES (
     spouse_middle_initial VARCHAR(1),
     spouse_last_name VARCHAR(50),
     spouse_ssn INT,
+    spouse_date_of_birth INT,
     w2_income INT,
     other_income INT,
     tax_withheld_w2 INT,
