@@ -4,7 +4,6 @@ import com.skillstorm.taxprepapp.models.Profile;
 import com.skillstorm.taxprepapp.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -19,7 +18,7 @@ public class ProfileController {
     ProfileService profileService;
 
     @GetMapping
-    public ResponseEntity<Profile> getProfile(Principal principal, Authentication authentication) {
+    public ResponseEntity<Profile> getProfile(Principal principal) {
         String oauthId = principal.getName();
         Optional<Profile> profile = profileService.getProfile(oauthId);
         if (profile.isPresent()) {
@@ -29,8 +28,7 @@ public class ProfileController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createProfile(Principal principal, Authentication authentication,
-                                                 @RequestBody Profile profile) {
+    public ResponseEntity<Void> createProfile(Principal principal, @RequestBody Profile profile) {
         String oauthId = principal.getName();
         boolean successful = profileService.createProfile(oauthId, profile);
         if (successful) {
@@ -40,8 +38,7 @@ public class ProfileController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> updateProfile(Principal principal, Authentication authentication,
-                                              @RequestBody Profile profile) {
+    public ResponseEntity<Void> updateProfile(Principal principal, @RequestBody Profile profile) {
         String oauthId = principal.getName();
         boolean successful = profileService.updateProfile(oauthId, profile);
         if (successful) {
