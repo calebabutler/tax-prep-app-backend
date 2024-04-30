@@ -56,7 +56,7 @@ public class UserController {
 
     @GetMapping("/signin")
     public RedirectView redirectView(){
-        return new RedirectView("http://localhost:5173");
+        return new RedirectView("http://localhost:5173/home");
     }
 }
 
