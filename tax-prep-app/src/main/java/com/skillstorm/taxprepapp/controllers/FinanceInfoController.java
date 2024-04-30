@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/finances")
+@CrossOrigin
 public class FinanceInfoController {
 
     @Autowired
