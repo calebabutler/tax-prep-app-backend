@@ -27,11 +27,11 @@ public class ProfileService {
 
     /* Returns whether it was successful or not */
     public boolean createProfile(String oauthId, Profile profile) {
-        if (getProfile(oauthId).isEmpty() && profile.getId() == null && profile.getFirstName() != null &&
-                profile.getMiddleInitial() != null && profile.getLastName() != null &&
-                profile.getDateOfBirth() != null && profile.getAddress() != null && profile.getCity() != null &&
-                profile.getState() != null && profile.getAptNumber() != null && profile.getZipCode() != null &&
-                profile.getSsn() != null && profile.getOauthId() == null) {
+        if (getProfile(oauthId).isEmpty() && profile.getId() == null && profile.getFirstName() != null
+                && profile.getLastName() != null && profile.getDateOfBirth() != null && profile.getAddress() != null
+                && profile.getCity() != null &&
+                profile.getState() != null && profile.getZipCode() != null &&
+                profile.getSsn() != null) {
             profile.setOauthId(oauthId);
             profileRepository.save(profile);
             return true;
