@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 import java.util.Optional;
 
-@RestController("/tax")
+@RestController
 @CrossOrigin
 public class TaxController {
 
@@ -24,7 +24,7 @@ public class TaxController {
     @Autowired
     FinanceInfoService financeInfoService;
 
-    @GetMapping("/calculate")
+    @GetMapping("/calculate_taxes")
     public ResponseEntity<Long> calculateTaxes(Principal principal) {
         String oauthId = principal.getName();
         Optional<Profile> profile = profileService.getProfile(oauthId);

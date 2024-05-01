@@ -28,10 +28,9 @@ public class FinanceInfoService {
     /* Returns whether it was successful or not */
     public boolean createInfo(String oauthId, FinanceInfo info) {
         if (getInfo(oauthId).isEmpty() && info.getId() == null && info.getFilingStatus() != null &&
-                info.getSpouseFirstName() != null && info.getSpouseMiddleInitial() != null &&
-                info.getSpouseLastName() != null && info.getSpouseSsn() != null && info.getW2Income() != null &&
+                info.getW2Income() != null &&
                 info.getOtherIncome() != null && info.getTaxWithheldW2() != null && info.getTaxWithheld1099() != null &&
-                info.getTaxWithheldOther() != null && info.getPrevTaxesPaid() != null && info.getOauthId() == null) {
+                info.getTaxWithheldOther() != null && info.getPrevTaxesPaid() != null) {
             info.setOauthId(oauthId);
             financeInfoRepository.save(info);
             return true;

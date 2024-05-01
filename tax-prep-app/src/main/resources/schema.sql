@@ -1,9 +1,8 @@
-drop table if exists DEPENDENTS;
 drop table if exists FINANCES;
 drop table if exists PROFILES;
 
 create table PROFILES (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     first_name VARCHAR(50),
     middle_initial VARCHAR(1),
     last_name VARCHAR(50),
@@ -18,7 +17,7 @@ create table PROFILES (
 );
 
 create table FINANCES (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     filing_status VARCHAR(50),
     spouse_first_name VARCHAR(50),
     spouse_middle_initial VARCHAR(1),
