@@ -18,9 +18,13 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((request) -> request.anyRequest().authenticated())
+        http.authorizeHttpRequests((authorizeHttpRequests) ->
+            authorizeHttpRequests
+                .requestMatchers("/logout_success").permitAll()
+                .anyRequest().authenticated()
+                )
                 .logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true)
-                        .logoutUrl("/logout").logoutSuccessUrl("/user/logout_success"));
+                        .logoutUrl("/logout").logoutSuccessUrl("/logout_success"));
 
         http.csrf((csrf) -> csrf.disable());
         http.cors(cors -> {

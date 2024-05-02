@@ -30,6 +30,12 @@ public class UserController {
     public String helloWorld() {
         return "hello world";
     }
+
+    @GetMapping("/logout_success")
+    @ResponseBody
+    public String logoutSuccess() {
+        return "Log out success";
+    }
     
     @GetMapping("/userInfo")
     @ResponseBody
