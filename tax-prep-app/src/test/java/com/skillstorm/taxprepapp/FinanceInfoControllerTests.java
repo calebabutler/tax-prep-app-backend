@@ -8,23 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
-import com.skillstorm.taxprepapp.controllers.ProfileController;
-import com.skillstorm.taxprepapp.models.Profile;
+import com.skillstorm.taxprepapp.controllers.FinanceInfoController;
+import com.skillstorm.taxprepapp.models.FinanceInfo;
 import com.skillstorm.taxprepapp.repositories.FinanceInfoRepository;
 import com.skillstorm.taxprepapp.repositories.ProfileRepository;
 
 @SpringBootTest
-public class ProfileControllerTests {
-
+public class FinanceInfoControllerTests {
+    
 	@Autowired
-	ProfileController profileController;
+	FinanceInfoController financeInfoController;
 
     @Autowired
     ProfileRepository profileRepository;
 
     @Autowired
     FinanceInfoRepository financeInfoRepository;
-    
+
 	private class ExamplePrincipal implements Principal {
 
         private String name;
@@ -41,46 +41,48 @@ public class ProfileControllerTests {
 	}
 
     @Test
-    public void testGetProfile() {
+    public void testGetInfo() {
         profileRepository.deleteAll();
         financeInfoRepository.deleteAll();
 
-        Principal principal = new ExamplePrincipal("testGetProfile");
-        ResponseEntity<Profile> profile = profileController.getProfile(principal);
-        Assertions.assertEquals(profile, ResponseEntity.badRequest().build());
+        Principal principal = new ExamplePrincipal("testGetInfo");
+        ResponseEntity<FinanceInfo> info = financeInfoController.getInfo(principal);
+        Assertions.assertEquals(info, ResponseEntity.badRequest().build());
     }
 
     @Test
-    public void testCreateProfile() {
+    public void testCreateInfo() {
         profileRepository.deleteAll();
         financeInfoRepository.deleteAll();
         
-        Principal principal = new ExamplePrincipal("testCreateProfile");
-        Profile profile = new Profile(
+        Principal principal = new ExamplePrincipal("testCreateInfo");
+        FinanceInfo info = new FinanceInfo(
+            "Single",
+            null,
+            null,
+            null,
+            null,
+            null,
+            5000000,
+            0,
+            0,
+            0,
+            0,
+            0,
+            null
+        );
+        ResponseEntity<Void> response = financeInfoController.createInfo(principal, info);
+        Assertions.assertEquals(response, ResponseEntity.ok().build());
+
+        ResponseEntity<FinanceInfo> returnFinanceInfo = financeInfoController.getInfo(principal);
+        info.setId(null);
+        info.setOauthId(null);
+        Assertions.assertEquals(returnFinanceInfo, ResponseEntity.ok(info));
+
+        FinanceInfo changeInfo = new FinanceInfo(
             null,
             "Mary",
             null,
-            "Smith",
-            20010101,
-            "123 Sesame St",
-            "Springfield",
-            "FL",
-            null,
-            11111,
-            111111111,
-            null
-        );
-        ResponseEntity<Void> response = profileController.createProfile(principal, profile);
-        Assertions.assertEquals(response, ResponseEntity.ok().build());
-
-        ResponseEntity<Profile> returnProfile = profileController.getProfile(principal);
-        profile.setId(null);
-        profile.setOauthId(null);
-        Assertions.assertEquals(returnProfile, ResponseEntity.ok(profile));
-
-        Profile changeProfile = new Profile(
-            null,
-            "John",
             null,
             null,
             null,
@@ -93,20 +95,21 @@ public class ProfileControllerTests {
             null
         );
 
-        ResponseEntity<Void> changeResponse = profileController.updateProfile(principal, changeProfile);
+        ResponseEntity<Void> changeResponse = financeInfoController.updateInfo(principal, changeInfo);
         Assertions.assertEquals(changeResponse, ResponseEntity.ok().build());
     }
 
     @Test
-    public void testBadCreateProfile() {
+    public void testBadCreateInfo() {
         profileRepository.deleteAll();
         financeInfoRepository.deleteAll();
 
-        Principal principal = new ExamplePrincipal("testBadCreateProfile");
+        Principal principal = new ExamplePrincipal("testBadCreateInfo");
 
-        Profile changeProfile = new Profile(
+        FinanceInfo changeInfo = new FinanceInfo(
             null,
-            "John",
+            "Mary",
+            null,
             null,
             null,
             null,
@@ -119,10 +122,11 @@ public class ProfileControllerTests {
             null
         );
 
-        ResponseEntity<Void> badChangeResponse = profileController.updateProfile(principal, changeProfile);
+        ResponseEntity<Void> badChangeResponse = financeInfoController.updateInfo(principal, changeInfo);
         Assertions.assertEquals(badChangeResponse, ResponseEntity.badRequest().build());
 
-        Profile badProfile = new Profile(
+        FinanceInfo badInfo = new FinanceInfo(
+            null,
             null,
             null,
             null,
@@ -136,7 +140,8 @@ public class ProfileControllerTests {
             null,
             null
         );
-        ResponseEntity<Void> badResponse = profileController.createProfile(principal, badProfile);
+
+        ResponseEntity<Void> badResponse = financeInfoController.createInfo(principal, badInfo);
         Assertions.assertEquals(badResponse, ResponseEntity.badRequest().build());
     }
 
