@@ -31,10 +31,15 @@ public class UserController {
         return "hello world";
     }
 
+    // @GetMapping("/logout_success")
+    // @ResponseBody
+    // public String logoutSuccess() {
+    //     return "Log out success";
+    // }
     @GetMapping("/logout_success")
     @ResponseBody
-    public String logoutSuccess() {
-        return "Log out success";
+    public RedirectView redirectLogoutView(){
+        return new RedirectView("http://localhost:5173");
     }
     
     @GetMapping("/userInfo")
