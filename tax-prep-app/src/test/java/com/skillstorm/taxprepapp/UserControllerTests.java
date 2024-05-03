@@ -11,33 +11,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.web.servlet.view.RedirectView;
 
-import com.skillstorm.taxprepapp.controllers.FinanceInfoController;
-import com.skillstorm.taxprepapp.controllers.ProfileController;
-import com.skillstorm.taxprepapp.controllers.TaxController;
 import com.skillstorm.taxprepapp.controllers.UserController;
 
 @SpringBootTest
-class ControllerTests {
+class UserControllerTests {
 
 	@Autowired
 	UserController userController;
-
-	@Autowired
-	TaxController taxController;
-
-	@Autowired
-	ProfileController profileController;
-
-	@Autowired
-	FinanceInfoController financeInfoController;
 
 	@Test
 	void testHelloWorld() {
@@ -93,6 +80,18 @@ class ControllerTests {
 		Principal principal = new ExamplePrincipal();
 		String test = userController.getOAuthId(principal);
 		Assertions.assertEquals(test, "test");
+	}
+
+	@Test
+	void testLogoutSuccess() {
+		RedirectView view = userController.redirectLogoutView();
+		Assertions.assertEquals(view.toString(), (new RedirectView("http://localhost:5173")).toString());
+	}
+
+	@Test
+	void testSignin() {
+		RedirectView view = userController.redirectView();
+		Assertions.assertEquals(view.toString(), (new RedirectView("http://localhost:5173/home")).toString());
 	}
 
 }
