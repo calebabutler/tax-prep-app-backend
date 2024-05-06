@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
@@ -25,8 +26,9 @@ public class SecurityConfiguration {
                 )
                 .logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true)
                         .logoutUrl("/logout").logoutSuccessUrl("/logout_success"));
+        
+        http.csrf(csrf -> csrf.disable());
 
-        http.csrf((csrf) -> csrf.disable());
         http.cors(cors -> {
             cors.configurationSource(request -> {
                 CorsConfiguration corsConfig = new CorsConfiguration();
