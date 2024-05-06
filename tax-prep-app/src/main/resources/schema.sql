@@ -1,6 +1,10 @@
 drop table if exists FINANCES;
 drop table if exists PROFILES;
 
+create table ADMIN (
+    oauth_id VARCHAR(50) PRIMARY KEY
+);
+
 create table PROFILES (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(50),
