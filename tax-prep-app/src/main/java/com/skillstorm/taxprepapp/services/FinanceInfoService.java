@@ -39,14 +39,24 @@ public class FinanceInfoService {
     }
 
     public boolean updateInfo(String oauthId, FinanceInfo info) {
-        Optional<FinanceInfo> databaseInfo = getInfo(oauthId);
-        if (databaseInfo.isPresent()) {
-            info.setId(databaseInfo.get().getId());
-            info.setOauthId(null);
-            financeInfoRepository.save(info);
-            return true;
+        List<FinanceInfo> infos = financeInfoRepository.findByOauthId(oauthId);
+        if (infos.isEmpty()) {
+            return false;
         }
-        return false;
+        FinanceInfo databaseInfo = infos.get(0);
+        databaseInfo.setFilingStatus(info.getFilingStatus());
+        databaseInfo.setSpouseFirstName(info.getSpouseFirstName());
+        databaseInfo.setSpouseMiddleInitial(info.getSpouseMiddleInitial());
+        databaseInfo.setSpouseLastName(info.getSpouseLastName());
+        databaseInfo.setSpouseDateOfBirth(info.getSpouseDateOfBirth());
+        databaseInfo.setSpouseSsn(info.getSpouseSsn());
+        databaseInfo.setW2Income(info.getW2Income());
+        databaseInfo.setOtherIncome(info.getOtherIncome());
+        databaseInfo.setTaxWithheldW2(info.getTaxWithheldW2());
+        databaseInfo.setTaxWithheld1099(info.getTaxWithheld1099());
+        databaseInfo.setTaxWithheldOther(info.getTaxWithheldOther());
+        databaseInfo.setPrevTaxesPaid(info.getPrevTaxesPaid());
+        financeInfoRepository.save(databaseInfo);
+        return true;
     }
-
 }
