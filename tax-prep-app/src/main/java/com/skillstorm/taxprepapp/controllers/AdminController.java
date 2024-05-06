@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.taxprepapp.Analytics;
 import com.skillstorm.taxprepapp.services.AdminService;
 
 @RestController
@@ -19,4 +20,10 @@ public class AdminController {
     public ResponseEntity<String> test() {
         return ResponseEntity.ok(adminService.test());
     }
+
+    @GetMapping("/analytics")
+    public ResponseEntity<Analytics> calculateAnalytics() {
+        return ResponseEntity.ok(adminService.calculateAnalytics());
+    }
+
 }
