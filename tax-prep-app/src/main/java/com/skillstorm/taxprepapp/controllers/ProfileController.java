@@ -12,7 +12,6 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/profile")
-@CrossOrigin
 public class ProfileController {
 
     @Autowired
