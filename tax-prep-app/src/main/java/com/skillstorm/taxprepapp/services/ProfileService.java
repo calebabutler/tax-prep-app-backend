@@ -40,14 +40,23 @@ public class ProfileService {
     }
 
     public boolean updateProfile(String oauthId, Profile profile) {
-        Optional<Profile> databaseProfile = getProfile(oauthId);
-        if (databaseProfile.isPresent()) {
-            profile.setId(databaseProfile.get().getId());
-            profile.setOauthId(null);
-            profileRepository.save(profile);
-            return true;
+        List<Profile> profiles = profileRepository.findByOauthId(oauthId);
+        if (profiles.isEmpty()) {
+            return false;
         }
-        return false;
+        Profile databaseProfile = profiles.get(0);
+        databaseProfile.setFirstName(profile.getFirstName());
+        databaseProfile.setMiddleInitial(profile.getMiddleInitial());
+        databaseProfile.setLastName(profile.getLastName());
+        databaseProfile.setDateOfBirth(profile.getDateOfBirth());
+        databaseProfile.setAddress(profile.getAddress());
+        databaseProfile.setCity(profile.getCity());
+        databaseProfile.setState(profile.getState());
+        databaseProfile.setAptNumber(profile.getAptNumber());
+        databaseProfile.setZipCode(profile.getZipCode());
+        databaseProfile.setSsn(profile.getSsn());
+        profileRepository.save(databaseProfile);
+        return true;
     }
 
 }
