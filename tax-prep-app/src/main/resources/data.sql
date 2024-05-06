@@ -1,27 +1,200 @@
-/* Fake data to stop H2 from complaining */
-insert into PROFILES (
-        first_name,
-        middle_initial,
-        last_name,
-        date_of_birth,
-        address,
-        city,
-        state,
-        apt_number,
-        zip_code,
-        ssn,
-        oauth_id
-    )
-values (
-        'Tom',
-        'B',
-        'Jones',
-        19010101,
-        '123 Sesame St.',
-        'Kansas City',
-        'MO',
-        null,
-        11111,
-        00000000,
-        '' /* Insert oauth ID */
-    );
+insert into PROFILES (state) values ('NH');
+insert into PROFILES (state) values ('WV');
+insert into PROFILES (state) values ('AR');
+insert into PROFILES (state) values ('AL');
+insert into PROFILES (state) values ('KY');
+insert into PROFILES (state) values ('AZ');
+insert into PROFILES (state) values ('KS');
+insert into PROFILES (state) values ('NV');
+insert into PROFILES (state) values ('IL');
+insert into PROFILES (state) values ('WI');
+insert into PROFILES (state) values ('NE');
+insert into PROFILES (state) values ('MN');
+insert into PROFILES (state) values ('MS');
+insert into PROFILES (state) values ('SD');
+insert into PROFILES (state) values ('KY');
+insert into PROFILES (state) values ('ID');
+insert into PROFILES (state) values ('IA');
+insert into PROFILES (state) values ('TX');
+insert into PROFILES (state) values ('ID');
+insert into PROFILES (state) values ('OK');
+insert into PROFILES (state) values ('WA');
+insert into PROFILES (state) values ('TN');
+insert into PROFILES (state) values ('ID');
+insert into PROFILES (state) values ('IA');
+insert into PROFILES (state) values ('MS');
+insert into PROFILES (state) values ('OH');
+insert into PROFILES (state) values ('HI');
+insert into PROFILES (state) values ('DE');
+insert into PROFILES (state) values ('SC');
+insert into PROFILES (state) values ('NH');
+insert into PROFILES (state) values ('MA');
+insert into PROFILES (state) values ('GA');
+insert into PROFILES (state) values ('NV');
+insert into PROFILES (state) values ('VA');
+insert into PROFILES (state) values ('TX');
+insert into PROFILES (state) values ('WV');
+insert into PROFILES (state) values ('WY');
+insert into PROFILES (state) values ('MA');
+insert into PROFILES (state) values ('MN');
+insert into PROFILES (state) values ('CA');
+insert into PROFILES (state) values ('OK');
+insert into PROFILES (state) values ('IA');
+insert into PROFILES (state) values ('SC');
+insert into PROFILES (state) values ('VT');
+insert into PROFILES (state) values ('NJ');
+insert into PROFILES (state) values ('DC');
+insert into PROFILES (state) values ('PA');
+insert into PROFILES (state) values ('OR');
+insert into PROFILES (state) values ('DE');
+insert into PROFILES (state) values ('MS');
+insert into PROFILES (state) values ('HI');
+insert into PROFILES (state) values ('WV');
+insert into PROFILES (state) values ('VT');
+insert into PROFILES (state) values ('GA');
+insert into PROFILES (state) values ('MT');
+insert into PROFILES (state) values ('KS');
+insert into PROFILES (state) values ('OK');
+insert into PROFILES (state) values ('MN');
+insert into PROFILES (state) values ('MT');
+insert into PROFILES (state) values ('WY');
+insert into PROFILES (state) values ('WY');
+insert into PROFILES (state) values ('AK');
+insert into PROFILES (state) values ('NV');
+insert into PROFILES (state) values ('ID');
+insert into PROFILES (state) values ('NV');
+insert into PROFILES (state) values ('GA');
+insert into PROFILES (state) values ('ME');
+insert into PROFILES (state) values ('NJ');
+insert into PROFILES (state) values ('DE');
+insert into PROFILES (state) values ('WA');
+insert into PROFILES (state) values ('IL');
+insert into PROFILES (state) values ('MT');
+insert into PROFILES (state) values ('MA');
+insert into PROFILES (state) values ('MS');
+insert into PROFILES (state) values ('DC');
+insert into PROFILES (state) values ('VT');
+insert into PROFILES (state) values ('DC');
+insert into PROFILES (state) values ('SD');
+insert into PROFILES (state) values ('MO');
+insert into PROFILES (state) values ('OH');
+insert into PROFILES (state) values ('NM');
+insert into PROFILES (state) values ('NJ');
+insert into PROFILES (state) values ('IL');
+insert into PROFILES (state) values ('GA');
+insert into PROFILES (state) values ('CA');
+insert into PROFILES (state) values ('OK');
+insert into PROFILES (state) values ('OR');
+insert into PROFILES (state) values ('ND');
+insert into PROFILES (state) values ('KS');
+insert into PROFILES (state) values ('HI');
+insert into PROFILES (state) values ('OK');
+insert into PROFILES (state) values ('TX');
+insert into PROFILES (state) values ('OH');
+insert into PROFILES (state) values ('NM');
+insert into PROFILES (state) values ('IN');
+insert into PROFILES (state) values ('KS');
+insert into PROFILES (state) values ('VA');
+insert into PROFILES (state) values ('WA');
+insert into PROFILES (state) values ('AZ');
+insert into PROFILES (state) values ('WA');
+insert into FINANCES (filing_status, w2_income) values ('separately', 6238934);
+insert into FINANCES (filing_status, w2_income) values ('single', 5208790);
+insert into FINANCES (filing_status, w2_income) values ('separately', 3670659);
+insert into FINANCES (filing_status, w2_income) values ('separately', 4286173);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4619275);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 6289063);
+insert into FINANCES (filing_status, w2_income) values ('single', 5621519);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5900159);
+insert into FINANCES (filing_status, w2_income) values ('single', 4956166);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4979873);
+insert into FINANCES (filing_status, w2_income) values ('single', 3690673);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 3828643);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4506592);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5137867);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4317481);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 3291978);
+insert into FINANCES (filing_status, w2_income) values ('separately', 4114392);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 7569284);
+insert into FINANCES (filing_status, w2_income) values ('single', 3673159);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5082396);
+insert into FINANCES (filing_status, w2_income) values ('single', 5409451);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 8267297);
+insert into FINANCES (filing_status, w2_income) values ('separately', 4650748);
+insert into FINANCES (filing_status, w2_income) values ('separately', 6145552);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 3668307);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5813239);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 6150105);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5797616);
+insert into FINANCES (filing_status, w2_income) values ('separately', 4891331);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5572242);
+insert into FINANCES (filing_status, w2_income) values ('single', 4799145);
+insert into FINANCES (filing_status, w2_income) values ('single', 2519387);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5144158);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 6316409);
+insert into FINANCES (filing_status, w2_income) values ('separately', 3965465);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 6149186);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4906792);
+insert into FINANCES (filing_status, w2_income) values ('separately', 4878160);
+insert into FINANCES (filing_status, w2_income) values ('single', 6518777);
+insert into FINANCES (filing_status, w2_income) values ('separately', 4372374);
+insert into FINANCES (filing_status, w2_income) values ('single', 3374834);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5693417);
+insert into FINANCES (filing_status, w2_income) values ('separately', 3013366);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5536256);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4867253);
+insert into FINANCES (filing_status, w2_income) values ('single', 5182452);
+insert into FINANCES (filing_status, w2_income) values ('single', 4937393);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5017976);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5488051);
+insert into FINANCES (filing_status, w2_income) values ('separately', 6894411);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 6197656);
+insert into FINANCES (filing_status, w2_income) values ('separately', 4492392);
+insert into FINANCES (filing_status, w2_income) values ('single', 4219926);
+insert into FINANCES (filing_status, w2_income) values ('separately', 4586587);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 6844944);
+insert into FINANCES (filing_status, w2_income) values ('single', 4248140);
+insert into FINANCES (filing_status, w2_income) values ('single', 5282031);
+insert into FINANCES (filing_status, w2_income) values ('single', 3015823);
+insert into FINANCES (filing_status, w2_income) values ('single', 3223326);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5160862);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5062321);
+insert into FINANCES (filing_status, w2_income) values ('separately', 6205046);
+insert into FINANCES (filing_status, w2_income) values ('single', 6130477);
+insert into FINANCES (filing_status, w2_income) values ('single', 3169547);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4610176);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5930225);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5936499);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4937126);
+insert into FINANCES (filing_status, w2_income) values ('single', 5048659);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4774389);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4584344);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 3203478);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 6662980);
+insert into FINANCES (filing_status, w2_income) values ('single', 5333658);
+insert into FINANCES (filing_status, w2_income) values ('single', 5298360);
+insert into FINANCES (filing_status, w2_income) values ('single', 6494135);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4315612);
+insert into FINANCES (filing_status, w2_income) values ('single', 3985351);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5887115);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 6052766);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 4404728);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 6675990);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5308461);
+insert into FINANCES (filing_status, w2_income) values ('single', 7924164);
+insert into FINANCES (filing_status, w2_income) values ('single', 4909252);
+insert into FINANCES (filing_status, w2_income) values ('separately', 3258822);
+insert into FINANCES (filing_status, w2_income) values ('single', 5623190);
+insert into FINANCES (filing_status, w2_income) values ('separately', 6429345);
+insert into FINANCES (filing_status, w2_income) values ('separately', 5170385);
+insert into FINANCES (filing_status, w2_income) values ('single', 3674979);
+insert into FINANCES (filing_status, w2_income) values ('single', 4528113);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 3269889);
+insert into FINANCES (filing_status, w2_income) values ('single', 5785556);
+insert into FINANCES (filing_status, w2_income) values ('single', 3167204);
+insert into FINANCES (filing_status, w2_income) values ('separately', 6223790);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5580351);
+insert into FINANCES (filing_status, w2_income) values ('single', 4521894);
+insert into FINANCES (filing_status, w2_income) values ('separately', 4487655);
+insert into FINANCES (filing_status, w2_income) values ('jointly', 5533112);
+insert into FINANCES (filing_status, w2_income) values ('single', 8081994);
