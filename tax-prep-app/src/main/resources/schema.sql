@@ -1,5 +1,6 @@
 drop table if exists FINANCES;
 drop table if exists PROFILES;
+drop table if exists ADMINS;
 
 create table ADMINS (
     oauth_id VARCHAR(50) PRIMARY KEY
