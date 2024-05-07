@@ -85,13 +85,13 @@ class UserControllerTests {
 	@Test
 	void testLogoutSuccess() {
 		RedirectView view = userController.redirectLogoutView();
-		Assertions.assertEquals(view.toString(), (new RedirectView("http://localhost:5173")).toString());
+		Assertions.assertEquals(view.toString(), (new RedirectView(TaxPrepAppApplication.getFrontendUrl())).toString());
 	}
 
 	@Test
 	void testSignin() {
 		RedirectView view = userController.redirectView();
-		Assertions.assertEquals(view.toString(), (new RedirectView("http://localhost:5173/home")).toString());
+		Assertions.assertEquals(view.toString(), (new RedirectView(TaxPrepAppApplication.getFrontendUrl() + "/home")).toString());
 	}
 
 }

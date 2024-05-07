@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.skillstorm.taxprepapp.TaxPrepAppApplication;
+
 
 @Controller
 public class UserController {
@@ -37,7 +39,7 @@ public class UserController {
     @GetMapping("/logout_success")
     @ResponseBody
     public RedirectView redirectLogoutView(){
-        return new RedirectView("http://localhost:5173");
+        return new RedirectView(TaxPrepAppApplication.getFrontendUrl());
     }
     
     @GetMapping("/userInfo")
@@ -65,7 +67,7 @@ public class UserController {
 
     @GetMapping("/signin")
     public RedirectView redirectView(){
-        return new RedirectView("http://localhost:5173/home");
+        return new RedirectView(TaxPrepAppApplication.getFrontendUrl() + "/home");
     }
 }
 
