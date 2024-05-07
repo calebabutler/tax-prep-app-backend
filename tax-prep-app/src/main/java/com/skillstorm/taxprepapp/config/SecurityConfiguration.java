@@ -17,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.skillstorm.taxprepapp.TaxPrepAppApplication;
 import com.skillstorm.taxprepapp.repositories.AdminRepository;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -48,7 +49,7 @@ public class SecurityConfiguration {
             cors.configurationSource(request -> {
                 CorsConfiguration corsConfig = new CorsConfiguration();
 
-                corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:5173")); 
+                corsConfig.setAllowedOrigins(Arrays.asList(TaxPrepAppApplication.getFrontendUrl())); 
                 corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));  
                 corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));   
                 corsConfig.setAllowCredentials(true);                               

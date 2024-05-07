@@ -82,7 +82,7 @@ public class AdminService {
         return new Analytics(
             getStateFrequencies(),
             getFilingStatusFrequencies(),
-            getIncomeFrequencies(5)
+            getIncomeFrequencies(10)
         );
     }
 
