@@ -67,7 +67,7 @@ public class UserController {
 
     @GetMapping("/signin")
     public RedirectView redirectView(){
-        return new RedirectView(TaxPrepAppApplication.getFrontendUrl() + "/home");
+        return new RedirectView(TaxPrepAppApplication.getFrontendUrl());
     }
 }
 
