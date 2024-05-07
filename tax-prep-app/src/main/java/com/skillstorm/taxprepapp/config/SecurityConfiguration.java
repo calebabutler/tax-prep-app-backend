@@ -74,6 +74,8 @@ public class SecurityConfiguration {
             Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
             if (adminRepository.findById(oidcUser.getSubject()).isPresent()) {
                 mappedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            } else {
+                mappedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
             }
             oidcUser = new DefaultOidcUser(mappedAuthorities, oidcUser.getIdToken(), oidcUser.getUserInfo());
             return oidcUser;
