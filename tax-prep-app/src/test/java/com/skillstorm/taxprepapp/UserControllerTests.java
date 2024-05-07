@@ -91,7 +91,7 @@ class UserControllerTests {
 	@Test
 	void testSignin() {
 		RedirectView view = userController.redirectView();
-		Assertions.assertEquals(view.toString(), (new RedirectView(TaxPrepAppApplication.getFrontendUrl() + "/home")).toString());
+		Assertions.assertEquals(view.toString(), (new RedirectView(TaxPrepAppApplication.getFrontendUrl())).toString());
 	}
 
 }
