@@ -131,4 +131,139 @@ public class TaxControllerTests {
         Assertions.assertEquals(response, ResponseEntity.ok((long) 32513490));
     }
 
+    @Test
+    public void testCalculateTaxesJointly() {
+        profileRepository.deleteAll();
+        financeInfoRepository.deleteAll();
+
+        Principal principal = new ExamplePrincipal("testBadCalculateTaxes");
+
+        Profile profile = new Profile(
+            null,
+            "Mary",
+            null,
+            "Smith",
+            20010101,
+            "123 Sesame St",
+            "Springfield",
+            "FL",
+            null,
+            11111,
+            111111111,
+            null
+        );
+
+        FinanceInfo info = new FinanceInfo(
+            "Married Filing Jointly",
+            null,
+            null,
+            null,
+            null,
+            null,
+            100000000,
+            2000,
+            2000,
+            2000,
+            2000,
+            2000,
+            null
+        );
+
+        profileController.createProfile(principal, profile);
+        financeInfoController.createInfo(principal, info);
+
+        ResponseEntity<Long> response = taxController.calculateTaxes(principal);
+        Assertions.assertEquals(response, ResponseEntity.ok((long) 28959240));
+    }
+
+    @Test
+    public void testCalculateTaxesSeparately() {
+        profileRepository.deleteAll();
+        financeInfoRepository.deleteAll();
+
+        Principal principal = new ExamplePrincipal("testBadCalculateTaxes");
+
+        Profile profile = new Profile(
+            null,
+            "Mary",
+            null,
+            "Smith",
+            20010101,
+            "123 Sesame St",
+            "Springfield",
+            "FL",
+            null,
+            11111,
+            111111111,
+            null
+        );
+
+        FinanceInfo info = new FinanceInfo(
+            "Married Filing Separately",
+            null,
+            null,
+            null,
+            null,
+            null,
+            100000000,
+            2000,
+            2000,
+            2000,
+            2000,
+            2000,
+            null
+        );
+
+        profileController.createProfile(principal, profile);
+        financeInfoController.createInfo(principal, info);
+
+        ResponseEntity<Long> response = taxController.calculateTaxes(principal);
+        Assertions.assertEquals(response, ResponseEntity.ok((long) 32463540));
+    }
+
+    @Test
+    public void testCalculateTaxesUnknown() {
+        profileRepository.deleteAll();
+        financeInfoRepository.deleteAll();
+
+        Principal principal = new ExamplePrincipal("testBadCalculateTaxes");
+
+        Profile profile = new Profile(
+            null,
+            "Mary",
+            null,
+            "Smith",
+            20010101,
+            "123 Sesame St",
+            "Springfield",
+            "FL",
+            null,
+            11111,
+            111111111,
+            null
+        );
+
+        FinanceInfo info = new FinanceInfo(
+            "Unknown",
+            null,
+            null,
+            null,
+            null,
+            null,
+            100000000,
+            2000,
+            2000,
+            2000,
+            2000,
+            2000,
+            null
+        );
+
+        profileController.createProfile(principal, profile);
+        financeInfoController.createInfo(principal, info);
+
+        ResponseEntity<Long> response = taxController.calculateTaxes(principal);
+        Assertions.assertEquals(response, ResponseEntity.ok((long) 32513490));
+    }
+
 }
