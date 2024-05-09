@@ -45,46 +45,43 @@ public class TaxCalculator {
             new BracketEntry(0, 10),
     };
 
-    private static final BracketEntry[] headOfHouseholdBracketTable = {
-            new BracketEntry(57810000, 37),
-            new BracketEntry(23125000, 35),
-            new BracketEntry(18210000, 32),
-            new BracketEntry(9535000, 24),
-            new BracketEntry(5985000, 22),
-            new BracketEntry(1570000, 12),
-            new BracketEntry(0, 10),
-    };
-
     public static long calculateTaxes(Profile profile, FinanceInfo info) {
-        long taxableIncome = info.getW2Income() + info.getOtherIncome();
+        long totalIncome = info.getW2Income() + info.getOtherIncome();
         long prePaid = info.getTaxWithheldW2() + info.getTaxWithheld1099() + info.getTaxWithheldOther() +
                 info.getPrevTaxesPaid();
 
         BracketEntry[] bracketTable;
+        long stdDeduction;
 
-        if ("single".equals(info.getFilingStatus())) {
+        if ("Single".equals(info.getFilingStatus())) {
             bracketTable = singleBracketTable;
-        } else if ("jointly".equals(info.getFilingStatus())) {
+            stdDeduction = 1385000;
+        } else if ("Married Filing Jointly".equals(info.getFilingStatus())) {
             bracketTable = jointlyBracketTable;
-        } else if ("separately".equals(info.getFilingStatus())) {
+            stdDeduction= 2770000;
+        } else if ("Married Filing Separately".equals(info.getFilingStatus())) {
             bracketTable = separatelyBracketTable;
+            stdDeduction= 2770000;
         } else {
-            bracketTable = headOfHouseholdBracketTable;
+            bracketTable = singleBracketTable;
+            stdDeduction = 1385000;
         }
-
+        
         long taxes = 0;
-        for (BracketEntry entry : bracketTable) {
-            if (taxableIncome > entry.minIncome) {
-                /* Should this round down? I feel like it should not */
-                taxes += (taxableIncome - entry.minIncome) * entry.percentRate / 100;
-                taxableIncome = entry.minIncome;
+        if(stdDeduction >= totalIncome){
+            return taxes;
+        }else{
+            long taxableIncome = totalIncome- stdDeduction;
+            for (BracketEntry entry : bracketTable) {
+                if (taxableIncome > entry.minIncome) {
+                    taxes += (taxableIncome - entry.minIncome) * entry.percentRate / 100;
+                    taxableIncome = entry.minIncome;
+                }
             }
+            /* Subtract pre-paid taxes */
+            taxes -= prePaid;
+            
+            return taxes;
         }
-
-        /* Subtract pre-paid taxes */
-        taxes -= prePaid;
-
-        return taxes;
     }
-
 }
