@@ -69,7 +69,7 @@ public class TaxCalculator {
         
         long taxes = 0;
         if(stdDeduction >= totalIncome){
-            return taxes;
+            return taxes -=prePaid;
         }else{
             long taxableIncome = totalIncome- stdDeduction;
             for (BracketEntry entry : bracketTable) {
