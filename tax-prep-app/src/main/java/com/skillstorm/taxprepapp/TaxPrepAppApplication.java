@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TaxPrepAppApplication {
 
 	public static String getFrontendUrl() {
-		return "http://andrea-caleb-expresstax.s3-website-us-east-1.amazonaws.com";
+		return "http://localhost:5173";
 	}
 
 	public static void main(String[] args) {
