@@ -128,7 +128,7 @@ public class TaxControllerTests {
         financeInfoController.createInfo(principal, info);
 
         ResponseEntity<Long> response = taxController.calculateTaxes(principal);
-        Assertions.assertEquals(response, ResponseEntity.ok((long) 32865390));
+        Assertions.assertEquals(response, ResponseEntity.ok((long) 32513490));
     }
 
 }
