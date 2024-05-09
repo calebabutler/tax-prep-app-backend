@@ -29,6 +29,7 @@ public class ProfileController {
 
     @PostMapping
     public ResponseEntity<Void> createProfile(Principal principal, @RequestBody Profile profile) {
+        System.out.println(profile);
         String oauthId = principal.getName();
         boolean successful = profileService.createProfile(oauthId, profile);
         if (successful) {
